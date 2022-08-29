@@ -8,6 +8,7 @@ use MediaWiki\MediaWikiServices;
 use Wikibase\Client\WikibaseClient;
 use Wikibase\DataModel\Entity\ItemId;
 use Wikibase\DataModel\Services\Lookup\TermLookupException;
+use Wikibase\Lib\LanguageNameLookup;
 use Wikibase\Repo\WikibaseRepo;
 
 class WikibaseDictTag {
@@ -18,12 +19,11 @@ class WikibaseDictTag {
 		}
 
 		// Get the current language for the header.
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage()->getCode();
 
 		// Get a list of all the languages for the term filtering.
-		$langUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
-		// FIXME: This doesn't work either.
-//		$langNames = $langUtils->getLanguageNames($contLang, LanguageNameUtils::ALL);
+//		$langUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+		$languageNameLookup = new LanguageNameLookup($contLang);
 
 		// Get the entity lookup service.
 		$entityLookup = WikibaseClient::getEntityLookup();
@@ -43,9 +43,12 @@ class WikibaseDictTag {
 				if ($defaultLabel === NULL || $label->getLanguageCode() == $contLang) {
 					$defaultLabel = $label->getText();
 				}
-				// FIXME: Why doesn't this work?
+				// Skip the current language.
+				if ($label->getLanguageCode() == $contLang) {
+					continue;
+				}
 //				$langName = $langUtils->getLanguageName($label->getLanguageCode(), $contLang);
-				$langName = $langUtils->getLanguageName($label->getLanguageCode());
+				$langName = $languageNameLookup->getName($label->getLanguageCode());
 				$labelOutput .= '<tr><th>' . $langName . '</th><td>' . $label->getText() . '</td></tr>';
 			}
 
