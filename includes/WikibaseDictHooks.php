@@ -25,12 +25,9 @@ use MediaWiki\Extension\WikibaseDict\WikibaseDictTag;
 class WikibaseDictHooks implements ParserFirstCallInitHook {
 	/**
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/BeforePageDisplay
-	 * @param \OutputPage $out
-	 * @param \Skin $skin
+	 * @param \Parser $parser
 	 */
-	public function onParserFirstCallInit( $parser ): void {
-//		$tagRenderer = new WikibaseDictTag;
- // 		$parser->setHook("wikibasedict", [$tagRenderer, 'render']);
+	public function onParserFirstCallInit($parser): void {
   		$parser->setHook("wikibasedict", [WikibaseDictTag::class, 'render']);
 	}
 

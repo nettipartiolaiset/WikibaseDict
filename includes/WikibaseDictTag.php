@@ -11,6 +11,7 @@ use ExtensionRegistry;
 class WikibaseDictTag {
 	
 	function render($input, $argv) {
+		// TODO: Should fetch all the langs instead of hardcoding them.
 		$langs = ['en', 'fi', 'nl'];
 		
 		if (!ExtensionRegistry::getInstance()->isLoaded('WikibaseClient')) {
