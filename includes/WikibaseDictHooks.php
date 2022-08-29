@@ -19,8 +19,8 @@
 
 namespace MediaWiki\Extension\WikibaseDict;
 
-use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Extension\WikibaseDict\WikibaseDictTag;
+use MediaWiki\Hook\ParserFirstCallInitHook;
 
 class WikibaseDictHooks implements ParserFirstCallInitHook {
 
