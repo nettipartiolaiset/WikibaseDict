@@ -23,6 +23,7 @@ use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Extension\WikibaseDict\WikibaseDictTag;
 
 class WikibaseDictHooks implements ParserFirstCallInitHook {
+
 	/**
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/BeforePageDisplay
 	 * @param \Parser $parser
