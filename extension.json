@@ -1,0 +1,25 @@
+{
+	"name": "WikibaseDict",
+	"author": [
+		"Jyri-Petteri ”ZeiP” Paloposki"
+	],
+	"url": "https://dict.scoutwiki.org/",
+	"description": "Extension to create a Wikibase-based dictionary",
+	"license-name": "GPL-2.0-or-later",
+	"type": "other",
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\WikibaseDict\\": "includes/"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": "init"
+	},
+	"HookHandlers": {
+        	"init": {
+        	    "class": "MediaWiki\\Extension\\WikibaseDict\\WikibaseDictHooks"
+        	}
+	},
+	"manifest_version": 1,
+	"requires": {
+		"MediaWiki": ">= 1.35.0"
+	}
+}
